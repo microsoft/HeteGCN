@@ -1,0 +1,11 @@
+name: "CodeQL"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  default-setup:
+    name: Default setup enabled
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CodeQL default setup is configured in repository settings."
