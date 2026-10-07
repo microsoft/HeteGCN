@@ -1,6 +1,8 @@
 import time
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 
 from utils import get_metrics
 from layers import GCN_Layer
@@ -108,7 +110,7 @@ class Model:
             tf.cast(tf.get_collection("#_of_weights"), tf.float32)
         )
         wt_reg = l2_sum / no_of_wts
-        wt_reg = tf.where(tf.is_nan(wt_reg), tf.zeros_like(wt_reg), wt_reg)
+        wt_reg = tf.where(tf.math.is_nan(wt_reg), tf.zeros_like(wt_reg), wt_reg)
         return wt_reg
 
     def setup_placeholders(self):

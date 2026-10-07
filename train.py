@@ -7,7 +7,8 @@ warnings.filterwarnings("ignore")
 import pickle 
 import argparse
 import pandas as pd
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
  
 from model import Model
 from utils import set_seed
