@@ -1,8 +1,12 @@
-tensorflow-gpu==2.12.0
-numpy==1.22.0
-pandas==0.24.2
-scipy==1.10.0
-scikit_learn==0.22
-scipy==1.4.1
+# NOTE: tensorflow-gpu was removed from PyPI after TF 2.10 - GPU support is
+# now bundled into the regular "tensorflow" package (on Linux; native Windows
+# GPU support was dropped after TF 2.10, use WSL2 for GPU on Windows).
+# The code itself has been ported from TF1.x graph-mode APIs
+# (tf.Session/tf.placeholder/tf.contrib...) to tensorflow.compat.v1 so it
+# runs on modern TensorFlow 2.x.
+tensorflow==2.15.1
+numpy==1.24.3
+pandas==2.0.2
+scipy==1.10.1
 scikit_learn==1.5.0
 gdown

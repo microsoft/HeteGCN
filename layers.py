@@ -1,4 +1,5 @@
-import tensorflow as tf 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def dropout(x, dropout, seed=0):
     """
@@ -40,7 +41,10 @@ class GCN_Layer():
         """        
         self.aux_embeddings = []
         with tf.variable_scope('Aggregator'):
-            self.W = tf.get_variable('W', shape=[self.input_dims, self.output_dims], dtype=tf.float32,  initializer=tf.contrib.layers.xavier_initializer())
+            # tf.contrib was removed entirely in TensorFlow 2.x; the Xavier
+            # (Glorot) uniform initializer is available directly via the
+            # compat.v1 API under its other common name.
+            self.W = tf.get_variable('W', shape=[self.input_dims, self.output_dims], dtype=tf.float32,  initializer=tf.glorot_uniform_initializer())
             
             if self.has_features:
                 # X can be a placeholder if used in the first layer
